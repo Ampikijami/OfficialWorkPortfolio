@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Runtime;
+using System.IO;
 
 namespace SwappingSqliteDatabaseWithJsonDatabase
 {
@@ -58,6 +58,9 @@ namespace SwappingSqliteDatabaseWithJsonDatabase
 
         public bool Save()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            System.Console.WriteLine("Database viewable @\n" + Directory.GetCurrentDirectory() + "\\" + _databasePath.Trim(new char[] {'\\', '.' }));
+            Console.ForegroundColor = ConsoleColor.Gray;
             return jsonDatabaseModel.Save();
         }
     }

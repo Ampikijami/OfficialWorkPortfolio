@@ -114,6 +114,9 @@ namespace SwappingSqliteDatabaseWithJsonDatabase.SqliteDatabase2
         
         public bool Save()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            System.Console.WriteLine("Database viewable @\n" + Directory.GetCurrentDirectory() + "\\" + databaseFileName);
+            Console.ForegroundColor = ConsoleColor.Gray;
             return true; //Do nothing... for now. This is useful for open transactions only. Which is not implemented yet.
         }
     }

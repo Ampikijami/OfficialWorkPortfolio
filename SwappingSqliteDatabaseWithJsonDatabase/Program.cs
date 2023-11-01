@@ -1,11 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
+using Microsoft.Extensions.Configuration;
+using System.Text.RegularExpressions;
 
 namespace SwappingSqliteDatabaseWithJsonDatabase
 {
@@ -16,13 +14,16 @@ namespace SwappingSqliteDatabaseWithJsonDatabase
     class Program
     {
         //In order to allow child methods of the Main() thread to run asynchronously, I made static Main(string[] args) into >> static async Task Main(string[] args)
+        private static IConfigurationRoot configuration;
         static async Task Main(string[] args)
         {
-            Assembly DLL = Assembly.LoadFile(Path.Combine(Directory.GetCurrentDirectory() + "\\" + "SwappingSqliteDatabaseWithJsonDatabase.dll"));
-            Type sqliteDatabase = DLL.GetType("SwappingSqliteDatabaseWithJsonDatabase.SqliteDatabase"); //this would be helpful if the type that we wanted to use was defined in another assembly.
-            Type jsonDatabase = DLL.GetType("SwappingSqliteDatabaseWithJsonDatabase.JsonDatabase"); //this would be helpful if the type we wanted to use was defined in another assembly.
+            configuration = GetConfiguration();
+            Assembly DLL = Assembly.LoadFile(Path.Combine(Directory.GetCurrentDirectory() + "\\" + "SwappingSqliteDatabaseWithJsonDatabase.dll"));//this would be helpful if the type that we wanted to use was defined in another assembly in another solution folder
+            Type sqliteDatabase = DLL.GetType("SwappingSqliteDatabaseWithJsonDatabase.SqliteDatabase"); //this would be helpful if the type that we wanted to use was defined in another assembly in another solution folder
+            Type jsonDatabase = DLL.GetType("SwappingSqliteDatabaseWithJsonDatabase.JsonDatabase"); //this would be helpful if the type we wanted to use was defined in another assembly in another solution folder
 
             object database;
+            IDatabase database2AlternativeDemonstration = null;
             char userInput;
             do
             {
@@ -38,10 +39,12 @@ namespace SwappingSqliteDatabaseWithJsonDatabase
             switch (userInput)
             {
                 case '1':
-                    database = database = Activator.CreateInstance(typeof(SwappingSqliteDatabaseWithJsonDatabase.SqliteDatabase2.SqliteDatabase2));
+                    database = (IDatabase)Activator.CreateInstance(Type.GetType(configuration["SqliteDatabase2"], throwOnError: true));
+                    database2AlternativeDemonstration = (IDatabase)Activator.CreateInstance(Type.GetType(configuration["SqliteDatabase2"], throwOnError: true));
                     break;
                 case '2':
-                    database = Activator.CreateInstance(typeof(JsonDatabase));
+                    database = (IDatabase)Activator.CreateInstance(Type.GetType(configuration["JsonDatabase"], throwOnError: true));
+                    database2AlternativeDemonstration = (IDatabase)Activator.CreateInstance(Type.GetType(configuration["JsonDatabase"], throwOnError: true));
                     break;
                 case '3':
                     database = Activator.CreateInstance(typeof(SwappingSqliteDatabaseWithJsonDatabase.SqliteDatabase.SqliteDatabase));
@@ -61,6 +64,32 @@ namespace SwappingSqliteDatabaseWithJsonDatabase
             AddToTableMethod.Invoke(database, new object[] { typeof(Movie), new Movie(2, "Shrek", 2005) });
             PrintContentsOfTableMethod.Invoke(database, new object[] { typeof(Movie)});
             SaveMethod.Invoke(database, null);
+
+            Console.ForegroundColor = ConsoleColor.White;
+            System.Console.WriteLine("\n\n\nThe following is a demonstration of an alternative to using MethodInfo to invoke methods against objects, and thus demonstrates the advantage of programming against an interface [IDatabase].\n");
+            database2AlternativeDemonstration.Connect();
+            database2AlternativeDemonstration.CreateTable(typeof(Movie), null);
+            database2AlternativeDemonstration.AddToTable(typeof(Movie), new Movie(3, "Alternative demonstration", 2222));
+            database2AlternativeDemonstration.AddToTable(typeof(Movie), new Movie(4, "Anger Management", 2011));
+            database2AlternativeDemonstration.PrintContentsOfTable(typeof(Movie));
+            database2AlternativeDemonstration.Save();
+        }
+        private static IConfigurationRoot GetConfiguration()
+        {
+            //Hello stranger! Cześć nieznajomy!
+            //need to install nuget package Microsoft.Extensions.Configuration 7.0.0
+            //need to install nuget package Microsoft.Extensions.Configuration.FileExtensions
+            //need to install nuget package Microsoft.Extensions.Configuration.Json
+
+            string currentDirectory = Directory.GetCurrentDirectory();
+            Regex exPathToProjectCS = new Regex($@".*" + Assembly.GetExecutingAssembly().GetName().Name);
+            string strPathToProjectCS = exPathToProjectCS.Match(currentDirectory).Value;
+            configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile(strPathToProjectCS + @"\appsettings.json")
+                .Build();
+
+            return configuration;
         }
     }
 }

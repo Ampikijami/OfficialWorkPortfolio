@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using System.Threading;
-using SwappingSqliteDatabaseWithJsonDatabase.SqliteDatabase;
-using Microsoft.Data.Sqlite;
 
 namespace SwappingSqliteDatabaseWithJsonDatabase.SqliteDatabase
 {

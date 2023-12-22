@@ -17,7 +17,6 @@ namespace SwappingSqliteDatabaseWithJsonDatabase
         private static IConfigurationRoot configuration;
         static async Task Main(string[] args)
         {
-            configuration = GetConfiguration();
             Assembly DLL = Assembly.LoadFile(Path.Combine(Directory.GetCurrentDirectory() + "\\" + "SwappingSqliteDatabaseWithJsonDatabase.dll"));//this would be helpful if the type that we wanted to use was defined in another assembly in another solution folder
             Type sqliteDatabase = DLL.GetType("SwappingSqliteDatabaseWithJsonDatabase.SqliteDatabase"); //this would be helpful if the type that we wanted to use was defined in another assembly in another solution folder
             Type jsonDatabase = DLL.GetType("SwappingSqliteDatabaseWithJsonDatabase.JsonDatabase"); //this would be helpful if the type we wanted to use was defined in another assembly in another solution folder
@@ -36,6 +35,7 @@ namespace SwappingSqliteDatabaseWithJsonDatabase
                 userInput = System.Console.ReadKey().KeyChar;
 
             } while (userInput != '1' && userInput != '2'); // && userInput != '3'
+            configuration = GetConfiguration();
             switch (userInput)
             {
                 case '1':

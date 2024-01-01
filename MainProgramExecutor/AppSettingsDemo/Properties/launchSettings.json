@@ -1,0 +1,48 @@
+/*
+  Here are our two running options:
+  1. IIS Express (which is our iisSettings & Profiles section below)
+  2. AppSettingsDemo (Which runs Kestrel which is a cross platform server)
+*/
+
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:12329",
+      "sslPort": 44317
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+
+      /*
+      In production, if we don't have this environment variable set when we publish to production, then the default value here is "Production"
+      //we won't be reading from appsettings.Development.json but rather appsettings.Production.json
+      */
+      //I could create multiple profiles, each pointing to a different appsetting.json
+      //appsettings.Staging.json
+      //appsettings.Whatever.json
+      //etc...
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development" //if I delete this environment variable, then my app environment on launch will look to appsettings.Production.json for the value. Or if it isn't htere, then it will look in appsettings.json
+        //both run development below \/
+      }
+    },
+
+    //AppSettingsDemo - this part is in Kestrel
+    // Kestrel is a cross-platform server. It runs on Linux, Windows, and Mac whereas IIS is Windows specific.
+    // Kestrel is fully open sourced.
+    "AppSettingsDemo": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development" //both run development^^^
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+﻿@page "/"
+@inject IConfiguration _config
+
+<h1>AppSettings Values!</h1>
+
+<p>
+    MySetting Value: @mySetting
+</p>
+<p>
+    SubSetting Value: @subSetting
+</p>
+<p>
+    Connection String Value: @connectionString 
+</p>
+
+@code {
+    string mySetting = "";
+    string subSetting = "";
+    string connectionString = "";
+
+    protected override void OnInitialized() //this technically gets called twice on the opening page (index)
+                                            //sometimes people don't want that, if so: turn off server side rendering (the downside is this is slower, but the result is this gets called once)
+
+    //it renders once on the server and then renders a second time on the client to get fresh data.
+    //the user gets the server side rendered page quickly and then re-renders on the client with fresh data.
+
+    {
+        base.OnInitialized();
+        mySetting = _config.GetValue<string>("MySetting"); //This will look in appsettings.json ONLY AFTER looing in 4 other locations first...
+        //1. 
+        //2.
+        //3.
+        //4.
+
+        subSetting = _config.GetValue<string>("MainSetting:SubSetting"); //mainsetting/subsetting
+                                                                         //you can load a whole section into a strongly typed object (traditionally a singleton).
+                                                                         //so instaed of passing something like <string> you pass the strongly typed class
+                                                                         //
+        connectionString = _config.GetConnectionString("Default");
+    }
+}

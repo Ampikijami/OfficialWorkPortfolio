@@ -90,7 +90,7 @@ namespace SwappingSqliteDatabaseWithJsonDatabase.SqliteDatabase2
 
             using (var reader = command.ExecuteReader())
             {
-                object[] values = new object[reader.FieldCount];
+                object[] values = new object[reader.FieldCount]; //initialize an array of size(# columns in table)
                 Console.WriteLine();
                 Console.WriteLine($"Getting database data for table {tableDataType.Name}");
                 while (reader.Read())

@@ -20,7 +20,6 @@ namespace SwappingSqliteDatabaseWithJsonDatabase
                 if (jsonDatabaseModel == null)
                 {
                     throw new Exception("Invoke the Connect method of the JsonDatabase class first. Cannot get the JObject until an instance of the JsonDatabaseModel is created/re-opened");
-                    return null;
                 }
                 else
                 {

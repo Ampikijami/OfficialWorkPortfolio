@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33529.622
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Work Portfolio", "Work Portfolio\Work Portfolio.csproj", "{7373900B-7574-426F-B808-A635EA56BEDF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Select A Project Here (Set As Startup Project)", "Select A Project Here (Set As Startup Project)", "{5D43C017-8C29-41EB-99FC-7AD9D7B60E3B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GmailLoginScript", "..\GmailLoginScript\GmailLoginScript.csproj", "{531CD78D-989B-422A-811A-8E4CAD45968E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicDependencyInjectionOrIOCDemonstration", "..\BasicDependencyInjectionOrIOCDemonstration\BasicDependencyInjectionOrIOCDemonstration.csproj", "{58FB7215-18B6-4B04-B475-EFA8616AC689}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "My DLL Folder", "My DLL Folder", "{6BEE5220-9AB8-4203-ABC9-82FCFF793622}"
+	ProjectSection(SolutionItems) = preProject
+		..\DLL Files\IMessageWriter.dll = ..\DLL Files\IMessageWriter.dll
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwappingSqliteDatabaseWithJsonDatabase", "..\SwappingSqliteDatabaseWithJsonDatabase\SwappingSqliteDatabaseWithJsonDatabase.csproj", "{23B453B7-4A69-44FB-AEEB-882C0B7AC8D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSettingsDemo", "AppSettingsDemo\AppSettingsDemo.csproj", "{5364A346-07CA-4333-8F1A-324F74299424}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7373900B-7574-426F-B808-A635EA56BEDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7373900B-7574-426F-B808-A635EA56BEDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7373900B-7574-426F-B808-A635EA56BEDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7373900B-7574-426F-B808-A635EA56BEDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{531CD78D-989B-422A-811A-8E4CAD45968E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{531CD78D-989B-422A-811A-8E4CAD45968E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{531CD78D-989B-422A-811A-8E4CAD45968E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{531CD78D-989B-422A-811A-8E4CAD45968E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58FB7215-18B6-4B04-B475-EFA8616AC689}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58FB7215-18B6-4B04-B475-EFA8616AC689}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58FB7215-18B6-4B04-B475-EFA8616AC689}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58FB7215-18B6-4B04-B475-EFA8616AC689}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23B453B7-4A69-44FB-AEEB-882C0B7AC8D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23B453B7-4A69-44FB-AEEB-882C0B7AC8D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23B453B7-4A69-44FB-AEEB-882C0B7AC8D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23B453B7-4A69-44FB-AEEB-882C0B7AC8D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5364A346-07CA-4333-8F1A-324F74299424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5364A346-07CA-4333-8F1A-324F74299424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5364A346-07CA-4333-8F1A-324F74299424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5364A346-07CA-4333-8F1A-324F74299424}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{531CD78D-989B-422A-811A-8E4CAD45968E} = {5D43C017-8C29-41EB-99FC-7AD9D7B60E3B}
+		{58FB7215-18B6-4B04-B475-EFA8616AC689} = {5D43C017-8C29-41EB-99FC-7AD9D7B60E3B}
+		{6BEE5220-9AB8-4203-ABC9-82FCFF793622} = {5D43C017-8C29-41EB-99FC-7AD9D7B60E3B}
+		{23B453B7-4A69-44FB-AEEB-882C0B7AC8D5} = {5D43C017-8C29-41EB-99FC-7AD9D7B60E3B}
+		{5364A346-07CA-4333-8F1A-324F74299424} = {5D43C017-8C29-41EB-99FC-7AD9D7B60E3B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16F7688A-D3E0-4EC7-B827-15201FF73B20}
+	EndGlobalSection
+EndGlobal
